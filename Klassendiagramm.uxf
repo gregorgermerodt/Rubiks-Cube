@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>418</x>
+      <y>187</y>
+      <w>396</w>
+      <h>539</h>
+    </coordinates>
+    <panel_attributes>CubeLogic
+--
+- m_cubieRenderer : CubieRenderer
+- m_input : InputSystem
+- m_orientationQuaternion : glm::quat
+- m_cubies : glm::mat4[3][3][3]
+- startingPositions : glm::mat4[3][3][3]
+- currentLayer : glm::mat4*[9]
+- middleCubies : glm::mat4*[6]
+- middleCubie : glm::mat4*
+--
++ Initialize(GLFWwindow*)
++ Render(float)
++ ClearResources()
++ Update(double)
++ HandleArrowKeys(double)
++ HandleNumpadKeys()
++ ShowMatrixOfCubie()
++ SetUpCubies()
++ ResetPosition()
++ RotateCube()
++ RotateLayer(char, int, int)
++ FindMiddleCubie(char, int)
++ FindLayer(char, int)
++ FindMiddleLayer(char)
++ FindRotationAxis(char, int) : glm::vec3
++ UpdateCubiePositions(char, int)
++ UpdateCubieIndices(char, int)
++ FlipCubieTranslationDirectionIfNeeded(char, int) : int
++ PlayRotationSound()
+--
+&lt;&lt;inherits&gt;&gt; GameInterface</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>869</x>
+      <y>187</y>
+      <w>407</w>
+      <h>253</h>
+    </coordinates>
+    <panel_attributes>CubieRenderer
+--
+- m_offset : const float
+- m_arrayBufferObject : GLuint
+- m_vertexBufferObject : GLuint[2]
+- m_shaderProgram : GLuint
+- m_transformLocation : GLint
+--
++ Initialize()
++ Render(const glm::mat4&amp;)
++ ClearResources()
++ GetCubieExtension() : float
+- AddSidePosition(int, int, std::vector&lt;glm::vec3&gt;&amp;)
+- AddSideColor(int, int, std::vector&lt;glm::vec3&gt;&amp;)
+- TranscribeToFloatArray(std::vector&lt;glm::vec3&gt;&amp;, float*)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>517</x>
+      <y>11</y>
+      <w>198</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>GameInterface
+--
++ Initialize()
++ Initialize(GLFWwindow*)
++ Update(double)
++ Render(float)
++ ClearResources()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>869</x>
+      <y>495</y>
+      <w>363</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>InputSystem
+--
+- m_keyMapper : std::map&lt;int, KeyboardObserver&gt;
+- m_window : GLFWwindow*
+--
++ InputSystem()
++ SetWindow(GLFWwindow*)
++ Update()
++ ObserveKey(int)
++ IsKeyDown(int) : bool
++ WasKeyPressed(int) : bool
++ WasKeyReleased(int) : bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>869</x>
+      <y>748</y>
+      <w>297</w>
+      <h>187</h>
+    </coordinates>
+    <panel_attributes>KeyboardObserver
+--
++ m_isDown : bool
++ m_wasPressed : bool
++ m_wasReleased : bool
+- m_window : GLFWwindow*
+- m_key : int
+--
++ KeyboardObserver()
++ KeyboardObserver(GLFWwindow*, int)
++ Update()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>407</x>
+      <y>770</y>
+      <w>418</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>ShaderUtil
+--
++ CreateShaderProgram(const char*, const char*) : GLuint
+--
+- LoadFile(const char*) : std::string
+- PrintShaderLog(GLuint)
+- PrintProgramLog(GLuint)
+- PrintOGlErrors()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>121</y>
+      <w>33</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>803</x>
+      <y>583</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>803</x>
+      <y>275</y>
+      <w>88</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1001</x>
+      <y>682</y>
+      <w>33</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>
